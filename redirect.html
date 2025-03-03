@@ -10,13 +10,14 @@
         // Debugging: Log extracted ID to console
         console.log("Extracted Unique ID:", uniqueId);
 
-        let uniqueId = new URLSearchParams(window.location.search).get('id') || sessionStorage.getItem("uniqueID");
-if (uniqueId) {
-    document.getElementById('unique-id').textContent = uniqueId;
-} else {
-    document.getElementById('unique-id').textContent = '未找到 ID！';
-}
- else {
+        if (uniqueId && uniqueId.trim() !== '') {
+            // 存储 ID 在 sessionStorage
+            sessionStorage.setItem("uniqueID", uniqueId);
+            console.log("Stored in sessionStorage:", uniqueId);
+
+            // 重定向到 index.html (不带参数)
+            window.location.replace("https://teemi-socialfinanceeeeee.github.io/unique-id-display/");
+        } else {
             document.write('未找到 ID！');
             console.error("Error: Unique ID not found in URL");
         }
