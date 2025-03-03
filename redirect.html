@@ -10,10 +10,13 @@
         // Debugging: Log extracted ID to console
         console.log("Extracted Unique ID:", uniqueId);
 
-        if (uniqueId && uniqueId.trim() !== '') {
-            console.log("Redirecting to:", `https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`);
-            window.location.replace(`https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`);
-        } else {
+        let uniqueId = new URLSearchParams(window.location.search).get('id') || sessionStorage.getItem("uniqueID");
+if (uniqueId) {
+    document.getElementById('unique-id').textContent = uniqueId;
+} else {
+    document.getElementById('unique-id').textContent = '未找到 ID！';
+}
+ else {
             document.write('未找到 ID！');
             console.error("Error: Unique ID not found in URL");
         }
