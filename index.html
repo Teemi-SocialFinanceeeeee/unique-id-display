@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>您的专属ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        #unique-id {
+            color: #0078d4;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Unique ID is: <span id="unique-id"></span></h1>
+    <script>
+        // 从 URL 参数中获取专属 ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const uniqueId = urlParams.get('id');
+
+        // 如果 URL 中有 ID，则显示；否则提示错误
+        if (uniqueId) {
+            document.getElementById('unique-id').textContent = uniqueId;
+        } else {
+            document.getElementById('unique-id').textContent = '未找到 ID！';
+        }
+    </script>
+</body>
+</html>
