@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting...</title>
+    <script>
+        // 从 URL 参数中获取专属 ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const uniqueId = urlParams.get('id');
+
+        // 如果 URL 中有 ID，则重定向到显示页面；否则提示错误
+        if (uniqueId && uniqueId.trim() !== '') {
+            window.location.href = `https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`;
+        } else {
+            document.write('未找到 ID！');
+        }
+    </script>
+</head>
+<body>
+    <p>正在跳转到您的专属 ID 页面...</p>
+</body>
+</html>
