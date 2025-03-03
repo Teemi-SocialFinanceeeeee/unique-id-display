@@ -12,7 +12,7 @@
 
         if (uniqueId && uniqueId.trim() !== '') {
             console.log("Redirecting to:", `https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`);
-            window.location.href = `https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`;
+            window.location.replace(`https://teemi-socialfinanceeeeee.github.io/unique-id-display/?id=${uniqueId}`);
         } else {
             document.write('未找到 ID！');
             console.error("Error: Unique ID not found in URL");
