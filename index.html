@@ -32,15 +32,17 @@
         <p>请妥善保存您的 ID，以便后续使用。</p>
     </div>
     <script>
-        // 从 URL 参数中获取专属 ID
-        const urlParams = new URLSearchParams(window.location.search);
-        const uniqueId = urlParams.get('id');
+        // 尝试从 URL 或 sessionStorage 获取 ID
+        let uniqueId = new URLSearchParams(window.location.search).get('id') || sessionStorage.getItem("uniqueID");
 
-        // 如果 URL 中有 ID，则显示；否则提示错误
-        if (uniqueId && uniqueId.trim() !== '') {
+        // Debugging: Log the retrieved ID
+        console.log("Retrieved Unique ID:", uniqueId);
+
+        if (uniqueId) {
             document.getElementById('unique-id').textContent = uniqueId;
         } else {
             document.getElementById('unique-id').textContent = '未找到 ID！';
+            console.error("Error: Unique ID not found in sessionStorage or URL");
         }
     </script>
 </body>
