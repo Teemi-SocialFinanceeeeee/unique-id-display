@@ -3,23 +3,22 @@
 <head>
     <title>Redirecting...</title>
     <script>
-        // 获取 URL 参数
+        // Get the Unique ID from the URL
         const urlParams = new URLSearchParams(window.location.search);
         const uniqueId = urlParams.get('id');
 
-        // Debugging: Log extracted ID to console
         console.log("Extracted Unique ID:", uniqueId);
 
         if (uniqueId && uniqueId.trim() !== '') {
-            // 存储 ID 在 sessionStorage
+            // Store the Unique ID in sessionStorage
             sessionStorage.setItem("uniqueID", uniqueId);
             console.log("Stored in sessionStorage:", uniqueId);
 
-            // 重定向到 index.html (不带参数)
+            // Redirect to index.html (without parameters)
             window.location.replace("https://teemi-socialfinanceeeeee.github.io/unique-id-display/");
         } else {
             console.error("Error: Unique ID not found in URL");
-            document.body.innerHTML = "<p style='color: red;'>未找到 ID，请刷新页面重试。</p>";
+            document.body.innerHTML = "<p style='color: red;'>未找到 ID，请刷新页面或重新提交表单。</p>";
         }
     </script>
 </head>
