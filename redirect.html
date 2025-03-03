@@ -18,8 +18,8 @@
             // 重定向到 index.html (不带参数)
             window.location.replace("https://teemi-socialfinanceeeeee.github.io/unique-id-display/");
         } else {
-            document.write('未找到 ID！');
             console.error("Error: Unique ID not found in URL");
+            document.body.innerHTML = "<p style='color: red;'>未找到 ID，请刷新页面重试。</p>";
         }
     </script>
 </head>
