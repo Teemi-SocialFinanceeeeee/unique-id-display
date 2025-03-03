@@ -32,17 +32,16 @@
         <p>请妥善保存您的 ID，以便后续使用。</p>
     </div>
     <script>
-        // 获取 ID
-        let uniqueId = new URLSearchParams(window.location.search).get('id') || sessionStorage.getItem("uniqueID");
+        // Retrieve Unique ID from sessionStorage
+        let uniqueId = sessionStorage.getItem("uniqueID");
 
-        // Debugging: Log the retrieved ID
         console.log("Retrieved Unique ID:", uniqueId);
 
         if (uniqueId) {
             document.getElementById('unique-id').textContent = uniqueId;
         } else {
+            document.getElementById('unique-id').textContent = '未找到 ID！';
             console.error("Error: Unique ID not found. Refreshing...");
-            // 强制刷新页面以尝试重新获取 ID
             setTimeout(() => {
                 window.location.reload();
             }, 2000);
