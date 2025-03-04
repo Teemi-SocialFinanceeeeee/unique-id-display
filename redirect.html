@@ -3,23 +3,29 @@
 <head>
     <title>Redirecting...</title>
     <script>
-        // Get the Unique ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const uniqueId = urlParams.get('id');
+        // Fetch the latest Unique ID from OneDrive
+        fetch("https://lunet-my.sharepoint.com/:u:/g/personal/bscw8_lunet_lboro_ac_uk/Documents/Business%20Projects/unique_ids.json.txt?download=1")
+          .then(response => response.text())  // Convert response to text
+          .then(text => {
+              let data = JSON.parse(text); // Parse text to JSON
+              if (data.length > 0) {
+                  let latestId = data[0]; // Get the latest Unique ID
+                  console.log("Latest Unique ID:", latestId);
 
-        console.log("Extracted Unique ID:", uniqueId);
+                  // Store in sessionStorage
+                  sessionStorage.setItem("uniqueID", latestId);
 
-        if (uniqueId && uniqueId.trim() !== '') {
-            // Store the Unique ID in sessionStorage
-            sessionStorage.setItem("uniqueID", uniqueId);
-            console.log("Stored in sessionStorage:", uniqueId);
-
-            // Redirect to index.html (without parameters)
-            window.location.replace("https://teemi-socialfinanceeeeee.github.io/unique-id-display/");
-        } else {
-            console.error("Error: Unique ID not found in URL");
-            document.body.innerHTML = "<p style='color: red;'>未找到 ID，请刷新页面或重新提交表单。</p>";
-        }
+                  // Redirect to index.html
+                  window.location.replace("https://teemi-socialfinanceeeeee.github.io/unique-id-display/");
+              } else {
+                  document.body.innerHTML = "<p style='color: red;'>未找到 ID，请稍后再试。</p>";
+                  console.error("Error: No Unique ID found in OneDrive file.");
+              }
+          })
+          .catch(error => {
+              document.body.innerHTML = "<p style='color: red;'>加载 ID 失败，请刷新页面。</p>";
+              console.error("Error fetching Unique ID:", error);
+          });
     </script>
 </head>
 <body>
